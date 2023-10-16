@@ -45,3 +45,15 @@ values
 (1, 3, 20000, '2020-08-06', 1),
 (2, 4, 40000, '2022-08-06', 1),
 (3, 1, 15000, '2023-10-13', 1);
+
+insert into part(part_description,manufacturer,"cost")
+values
+('engine 2.0L', 'Honda', 2000),
+('breaklight fluid', 'Bosch', 3000),
+('oil filer', 'K&N', 30);
+
+insert into service(service_type,inventory_id,customer_id,employee_id,part_id,"cost",labor_hours)
+values
+('engine installation', 3, 1, 3, 1, 3000, '10 hours 30 minutes'),
+('breaklight change', 4, 2, 3, 2, 3000, '20 hours 30 minutes'),
+('oil change', 2, 3, 3, 3, 100, '1 hours 0 minutes');

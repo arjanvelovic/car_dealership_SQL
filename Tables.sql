@@ -10,6 +10,14 @@ CREATE TABLE "car" (
   PRIMARY KEY ("car_id")
 );
 
+CREATE TABLE "part" (
+  "part_id" SERIAL,
+  "part_description" VARCHAR(150),
+  "manufacturer" VARCHAR(100),
+  "cost" MONEY,
+  PRIMARY KEY ("part_id")
+);
+
 CREATE TABLE "address" (
   "address_id" SERIAL,
   "housenumber" VARCHAR(100),
@@ -76,4 +84,24 @@ CREATE TABLE "purchase" (
   foreign key (customer_id) references customer(customer_id),
   foreign key (inventory_id) references inventory(inventory_id),
   foreign key (employee_id) references employee(employee_id)
+);
+
+alter table purchase rename to invoice;
+
+alter table invoice rename column purchase_id to invoice_id;
+
+CREATE TABLE "service" (
+  "service_ticket" SERIAL,
+  "service_type" VARCHAR(150),
+  "inventory_id" INTEGER,
+  "customer_id" INTEGER,
+  "employee_id" INTEGER,
+  "part_id" INTEGER,
+  "cost" MONEY,
+  "labor_hours" INTERVAL,
+  PRIMARY KEY ("service_ticket"),
+  foreign key (customer_id) references customer(customer_id),
+  foreign key (inventory_id) references inventory(inventory_id),
+  foreign key (employee_id) references employee(employee_id),
+  foreign key (part_id) references part(part_id)
 );
